@@ -72,13 +72,11 @@
         const storageRef = firebase.storage().ref();
         const filename = 'products/' + data.code + '.jpg';
         const ref = storageRef.child(filename);
-        console.log(ref);
 
         // Get the download URL
         ref.getDownloadURL().then(function(url) {
           // Insert url into an <img> tag to "download"
-          console.log(url);
-          document.getElementById("test_img").src = url;
+          document.getElementById(`${data.code}-test_img`).src = url;
         }).catch(function(error) {
           switch (error.code) {
             case 'storage/object-not-found':
@@ -112,7 +110,7 @@
                     </i>
                   </div>
                   <div class="display-flex justify-content-center">
-                    <img style="width:200px;height:150px" id="test_img" src="assets/pictures/camera.png"/>
+                    <img style="width:200px;height:150px" id="${data.code}-test_img" src="assets/pictures/camera.png"/>
                   </div>
                   <div class="display-flex justify-content-center">
                       <div class="stepper stepper-init stepper-small stepper-raised" data-value-el="#">
